@@ -29,3 +29,23 @@ def fib(n):
         prev2 = prev1
         prev1 = output
     return output
+
+
+#######################################################################################
+
+# grid traveler , from top left to bottom right, how many ways
+
+def grid_traveller(m, n):
+    table = [[0] * (n + 1) for _ in range(m + 1)]
+    table[1][1] = 1
+    for i in range(1, m):
+        for j in range(1, n):
+            table[i][j + 1] += table[i][j]
+            table[i + 1][j] += table[i][j]
+    # right-most column
+    for i in range(1, m):
+        table[i + 1][-1] += table[i][-1]
+    # bottom row
+    for j in range(1, n):
+        table[-1][j + 1] += table[-1][j]
+    return table[m][n]
