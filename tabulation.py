@@ -49,3 +49,15 @@ def grid_traveller(m, n):
     for j in range(1, n):
         table[-1][j + 1] += table[-1][j]
     return table[m][n]
+
+######################################################################################
+
+def can_sum(targert_sum, numbers):
+    table = [False] * (targert_sum + 1)
+    table[0] = True
+    for i in range(targert_sum):
+        if table[i]:
+            numbers = [num for num in numbers if i + num <= targert_sum]
+            for num in numbers:
+                table[i + num] = True
+    return table[-1]
